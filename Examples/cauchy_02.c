@@ -219,7 +219,7 @@ int main(int argc, char **argv)
     erasures[i] = MOA_Random_W(31, 1)%(k+m);
     if (erased[erasures[i]] == 0) {
       erased[erasures[i]] = 1;
-      bzero((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], sizeof(long)*w);
+      memset((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], 0, sizeof(long)*w);
       i++;
     }
   }
@@ -247,7 +247,7 @@ int main(int argc, char **argv)
   }
 
   for (i = 0; erasures[i] != -1; i++) {
-    bzero((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], sizeof(long)*w);
+    memset((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], 0, sizeof(long)*w);
   }
 
   jerasure_schedule_decode_lazy(k, m, w, bitmatrix, erasures, data, coding, w*sizeof(long), sizeof(long), 1);

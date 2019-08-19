@@ -165,7 +165,7 @@ int main(int argc, char **argv)
     erasures[i] = MOA_Random_W(w, 1)%(k+m);
     if (erased[erasures[i]] == 0) {
       erased[erasures[i]] = 1;
-      bzero((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], psize*w);
+      memset((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], 0, psize*w);
       i++;
     }
   }
@@ -210,7 +210,7 @@ int main(int argc, char **argv)
   jerasure_print_matrix(dm_ids, 1, k, w);
   printf("</pre><hr>\n");
 
-  for (i = 0; i < x; i++) bzero(data[i], w*psize);
+  for (i = 0; i < x; i++) memset(data[i], 0, w*psize);
 
   printf("Here is the state of the system after the erasures:\n\n");
   printf("<p>\n");

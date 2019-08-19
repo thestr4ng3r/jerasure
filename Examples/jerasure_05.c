@@ -172,7 +172,7 @@ int main(int argc, char **argv)
     if (erased[erasures[i]] == 0) {
       erased[erasures[i]] = 1;
 	  
-      bzero((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], size);
+      memset((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], 0, size);
       i++;
     }
   }
@@ -200,7 +200,7 @@ int main(int argc, char **argv)
   printf("And dm_ids:\n\n");
   jerasure_print_matrix(dm_ids, 1, k, w);
 
-  bzero(data[0], size);
+  memset(data[0], 0, size);
   jerasure_matrix_dotprod(k, w, decoding_matrix, dm_ids, 0, data, coding, size);
 
   printf("\nAfter calling jerasure_matrix_dotprod, we calculate the value of device #0 to be:\n\n");

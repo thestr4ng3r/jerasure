@@ -176,7 +176,7 @@ int main(int argc, char **argv)
     erasures[i] = MOA_Random_W(w, 1)%(k+m);
     if (erased[erasures[i]] == 0) {
       erased[erasures[i]] = 1;
-      bzero((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], sizeof(long)*w);
+      memset((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], 0, sizeof(long)*w);
       i++;
     }
   }
@@ -203,7 +203,7 @@ int main(int argc, char **argv)
   for (i = 0; i < k; i++) ptrs[i] = data[i];
   for (i = 0; i < m; i++) ptrs[k+i] = coding[i];
 
-  for (j = 0; j < m; j++) bzero(coding[j], sizeof(long)*w);
+  for (j = 0; j < m; j++) memset(coding[j], 0, sizeof(long)*w);
   printf("State of the system after erasing the coding devices:\n");
   printf("<p>\n");
   print_array(data, k, sizeof(long)*w, sizeof(long), "D");

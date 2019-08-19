@@ -536,7 +536,7 @@ int main (int argc, char **argv) {
 		/* Write data and encoded data to k+m files */
 		for	(i = 1; i <= k; i++) {
 			if (fp == NULL) {
-				bzero(data[i-1], blocksize);
+				memset(data[i-1], 0, blocksize);
  			} else {
 				sprintf(fname, "%s/Coding/%s_k%0*d%s", curdir, s1, md, i, extension);
 				if (n == 1) {
@@ -552,7 +552,7 @@ int main (int argc, char **argv) {
 		}
 		for	(i = 1; i <= m; i++) {
 			if (fp == NULL) {
-				bzero(data[i-1], blocksize);
+				memset(data[i-1], 0, blocksize);
  			} else {
 				sprintf(fname, "%s/Coding/%s_m%0*d%s", curdir, s1, md, i, extension);
 				if (n == 1) {

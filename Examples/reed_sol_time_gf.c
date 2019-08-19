@@ -172,7 +172,7 @@ int main(int argc, char **argv)
     if (erased[erasures[i]] == 0) {
       erased[erasures[i]] = 1;
       memcpy(old_values[i], (erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], bufsize);
-      bzero((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], bufsize);
+      memset((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], 0, bufsize);
       i++;
     }
   }

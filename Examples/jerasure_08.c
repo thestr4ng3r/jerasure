@@ -166,7 +166,7 @@ int main(int argc, char **argv)
   erasures[0] = k;
   erasures[1] = k+1;
   erasures[2] = -1;
-  for (j = 0; j < m; j++) bzero(coding[j], sizeof(long)*w);
+  for (j = 0; j < m; j++) memset(coding[j], 0, sizeof(long)*w);
 
   jerasure_schedule_decode_cache(k, m, w, cache, erasures, data, coding, w*sizeof(long), sizeof(long));
   jerasure_get_stats(stats);
@@ -183,7 +183,7 @@ int main(int argc, char **argv)
     erasures[i] = MOA_Random_W(w, 1)%(k+m);
     if (erased[erasures[i]] == 0) {
       erased[erasures[i]] = 1;
-      bzero((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], sizeof(long)*w);
+      memset((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], 0, sizeof(long)*w);
       i++;
     }
   }
@@ -206,7 +206,7 @@ int main(int argc, char **argv)
   print_array(coding, m, sizeof(long)*w, sizeof(long), "C");
   printf("<hr>\n");
   
-  bzero(coding[0], sizeof(long)*w);
+  memset(coding[0], 0, sizeof(long)*w);
   printf("Erased the first coding device:\n\n");
   printf("<p>\n");
   print_array(data, k, sizeof(long)*w, sizeof(long), "D");

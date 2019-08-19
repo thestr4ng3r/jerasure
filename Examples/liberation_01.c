@@ -165,7 +165,7 @@ int main(int argc, char **argv)
     erasures[i] = MOA_Random_W(30,1)%(k+m);
     if (erased[erasures[i]] == 0) {
       erased[erasures[i]] = 1;
-      bzero((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], sizeof(long)*w);
+      memset((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], 0, sizeof(long)*w);
       i++;
     }
   }
